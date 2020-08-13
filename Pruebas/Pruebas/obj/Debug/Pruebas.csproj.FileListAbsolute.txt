@@ -1,0 +1,16 @@
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\bin\Debug\Pruebas.exe.config
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\bin\Debug\Pruebas.exe
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\bin\Debug\Pruebas.pdb
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\bin\Debug\EntityFramework.dll
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\bin\Debug\EntityFramework.xml
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.csprojAssemblyReference.cache
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.Properties.Resources.resources
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.csproj.GenerateResource.cache
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.csproj.CoreCompileInputs.cache
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.csproj.CopyComplete
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.exe
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.pdb
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.Migrations.incio.resources
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.MenuPrincipal.resources
