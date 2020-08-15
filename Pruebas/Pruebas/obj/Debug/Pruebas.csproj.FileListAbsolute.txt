@@ -14,3 +14,4 @@ C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.exe
 C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.pdb
 C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.Migrations.incio.resources
 C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.MenuPrincipal.resources
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.Vistas.GestionCampaña.resources

@@ -12,5 +12,7 @@ namespace Pruebas.DAL.EntityFramework
         public RepositorioImagen(PruebaContext pContext) : base(pContext)
         {
         }
+
+        
     }
 }

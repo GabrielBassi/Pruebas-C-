@@ -10,7 +10,7 @@ namespace Pruebas.Modelo
     {
         public Campaña()
         {
-            Estado = true;
+            //Estado = true;
         }
         //Definicion de propiedades de la clase campaña
         public int CampañaId { get; set; }
@@ -20,7 +20,7 @@ namespace Pruebas.Modelo
         public DateTime HoraInicio { get; set; }
         public DateTime HoraFin { get; set; }
         public int DuracionImagen { get; set; }
-        public bool Estado { get; set; }
+        //public bool Estado { get; set; }
         public virtual IList<Imagen> ListaImagenes { get; set; }
     }
 }
