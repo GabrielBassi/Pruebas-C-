@@ -13,20 +13,16 @@ namespace Pruebas.Vistas
     public partial class GestionCampaña : Form
     {
         ControladorCampaña iControladorCampaña;
+        ControladorImagen iControladorImagen;
         IList<Imagen> listaImagenes = new List<Imagen>();
-        string rutaImagenOrigen = " ";
-        string rutaImagenDestino = "C:\\Users\\Harry\\Desktop\\UTN\\Pruebas Taller\\Pruebas\\Pruebas\\ImagenesCampañas";
-        string rutaImagen;
-
-        //List <ImageList> imageList = new List<ImageList> ();
 
         public GestionCampaña()
         {
             InitializeComponent();
             iControladorCampaña = new ControladorCampaña(UnidadDeTrabajo.Instancia);
-            
+            iControladorImagen = new ControladorImagen(UnidadDeTrabajo.Instancia);           
         }
-        public object Tag { get; set; }
+        
         private void tbCtrlAgregar_Click(object sender, EventArgs e)
         {
 
@@ -36,8 +32,12 @@ namespace Pruebas.Vistas
         {
             try
             {
-                
-
+                //Métodos de control de los campos fechas, horas y duración.
+                DateTime pFechaInicio = new DateTime(this.dTPickFechaDesde.Value.Year, this.dTPickFechaDesde.Value.Month, this.dTPickFechaDesde.Value.Day, Convert.ToInt32(this.nUpDesdeHoraAgregar.Text), 0, 0);
+                DateTime pFechaFin = new DateTime(this.dTPickFechaHasta.Value.Year, this.dTPickFechaHasta.Value.Month, this.dTPickFechaHasta.Value.Day, Convert.ToInt32(this.nUpHastaHoraAgregar.Text), 0, 0);
+                iControladorCampaña.ValidarFecha(pFechaInicio, pFechaFin); 
+                // me salta el error pero lo guarda igual
+                //la hora tiene que ser de 00:01 am a 23:59 pm 
                 if (string.IsNullOrWhiteSpace(txBoxNombreAgregarCamp.Text) || (string.IsNullOrWhiteSpace(dTPickFechaDesde.Text))
                 || (string.IsNullOrWhiteSpace(dTPickFechaHasta.Text)) || (string.IsNullOrWhiteSpace(nUDuracionAgregar.Text))
                 || (string.IsNullOrWhiteSpace(nUpDesdeHoraAgregar.Text)) || (string.IsNullOrWhiteSpace(nUpHastaHoraAgregar.Text)))
@@ -59,37 +59,25 @@ namespace Pruebas.Vistas
             }
         }
         
-        private void CargarImagen()
+            private void CargarImag_Click(object sender, EventArgs e)
         {
-
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Imágenes(*.jpg, *.gif, *.bmp)|*.jpg;*.gif;*.png";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                Imagen iImagen = new Imagen();
-                string imagenNoDisponible = Path.Combine(Application.StartupPath, @" ");
-                pBoxImagen1.Tag = imagenNoDisponible;
-                rutaImagenOrigen = openFileDialog.FileName; //Busca la imagen
-                pBoxImagen1.Image = Image.FromFile(rutaImagenOrigen); //carga la imagen en el picturebox
-                string rutaImagen = pBoxImagen1.Tag.ToString(); //Recupera la ruta de la imagen
-                File.Copy(rutaImagenOrigen, rutaImagenDestino); //Copia la direccion y debria guardar en la bd.!!!!!
-                string nombreImagen = Path.GetFileName(rutaImagen); // Persistencia de la ruta en la bd.
-
-            }
+           iControladorImagen.CargarImagenes(listaImagenes, gBoxImagenes);            
         }
 
-        private void gBoxInfoCampaña_Enter(object sender, EventArgs e)
+        private void BtnCancelarCampaña_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnModCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void CargarImagMod_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void CargarImag_Click(object sender, EventArgs e)
-        {
-            CargarImagen();
-
-        }
-
-        
     }
 }
 

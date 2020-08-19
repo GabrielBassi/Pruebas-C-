@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Pruebas.Modelo;
+using Pruebas.Excepciones;
 
 namespace Pruebas.DAL.EntityFramework
 {
@@ -13,14 +14,7 @@ namespace Pruebas.DAL.EntityFramework
         {
 
         }
-        public Campaña BuscarCampañaPorNombre(string pNombre)
-        {
-            return iDbContext.Campañas.Where(x => x.Nombre == pNombre).FirstOrDefault();
-        }
-
-
     }
-
 }
 
 

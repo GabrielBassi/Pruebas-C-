@@ -9,7 +9,6 @@ namespace Pruebas.DAL
 {
     interface IRepositorioCampaña : IRepositorioGeneral<Campaña>
     {
-        Campaña BuscarCampañaPorNombre(string pNombre);
 
     }
 }

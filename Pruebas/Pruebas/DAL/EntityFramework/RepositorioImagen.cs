@@ -13,6 +13,14 @@ namespace Pruebas.DAL.EntityFramework
         {
         }
 
-        
+        //public Imagen ObtenerRutaImagen(string pRutaImagen)
+        //{
+        //    return iDbContext.Imagenes.Where(x => x.RutaImagen == pRutaImagen).FirstOrDefault();
+        //}
     }
-}
+
+ }
+
+
+    
+

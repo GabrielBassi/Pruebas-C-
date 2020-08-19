@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Pruebas.DAL.EntityFramework;
 using Pruebas.Modelo;
+using System.Windows.Forms;
 
 namespace Pruebas.Controladores
 {
@@ -40,6 +41,19 @@ namespace Pruebas.Controladores
 
             iUdT.RepositorioCampaña.Agregar(iCampaña);
             iUdT.Guardar();
+        }
+
+        /// <summary>
+        /// Método para validar la fecha de inicio y fin de una campaña
+        /// </summary>
+        /// <param name="pFechaInicio"></param>
+        /// <param name="pFechaFin"></param>
+        public void ValidarFecha(DateTime pFechaInicio, DateTime pFechaFin)
+        {
+            if (pFechaInicio >= pFechaFin)
+            {
+                System.Windows.Forms.MessageBox.Show("la fecha de inicio debe ser menor o igual a la fecha de fin", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

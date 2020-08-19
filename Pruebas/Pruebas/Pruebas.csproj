@@ -43,6 +43,7 @@
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -72,6 +73,10 @@
     <Compile Include="Migrations\202008131137053_incio.designer.cs">
       <DependentUpon>202008131137053_incio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008151336199_456.cs" />
+    <Compile Include="Migrations\202008151336199_456.designer.cs">
+      <DependentUpon>202008151336199_456.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Vistas\GestionCampaña.cs">
       <SubType>Form</SubType>
@@ -91,6 +96,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Migrations\202008131137053_incio.resx">
       <DependentUpon>202008131137053_incio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008151336199_456.resx">
+      <DependentUpon>202008151336199_456.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
