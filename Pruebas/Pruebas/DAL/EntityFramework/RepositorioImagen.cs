@@ -12,7 +12,10 @@ namespace Pruebas.DAL.EntityFramework
         public RepositorioImagen(PruebaContext pContext) : base(pContext)
         {
         }
-
+        //public IList<Imagen> ListadoTodasLasImagenesDeUnaCampaña(int pId)
+        //{
+        //    return iDbContext.Imagenes.Select(x=>x.i)
+        //}
         //public Imagen ObtenerRutaImagen(string pRutaImagen)
         //{
         //    return iDbContext.Imagenes.Where(x => x.RutaImagen == pRutaImagen).FirstOrDefault();

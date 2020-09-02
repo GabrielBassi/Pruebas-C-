@@ -20,7 +20,8 @@ namespace Pruebas
 
             private void MenuPrincipal_Load(object sender, EventArgs e)
             {
-
+            
+            
             }
 
         private void btnCampaña_Click(object sender, EventArgs e)

@@ -12,6 +12,7 @@ namespace Pruebas.Modelo
         public int ImagenId { get; set; }
         public string Nombre { get; set; }
         public string RutaImagen { get; set; }
+        public virtual Campaña Campaña { get; set; }
     }
 }
 

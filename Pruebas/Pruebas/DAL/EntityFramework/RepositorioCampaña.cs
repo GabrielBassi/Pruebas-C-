@@ -14,6 +14,12 @@ namespace Pruebas.DAL.EntityFramework
         {
 
         }
+
+        
+        public Campaña ExistenciaCampaña(string pNombre)
+        {
+            return iDbContext.Campañas.Where(x => x.Nombre == pNombre).FirstOrDefault();
+        }
     }
 }
 

@@ -48,7 +48,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnCampaña);
             this.Name = "MenuPrincipal";
-            this.Text = "Menu Princioal";
+            this.Text = "Menu Principal";
             this.ResumeLayout(false);
 
         }

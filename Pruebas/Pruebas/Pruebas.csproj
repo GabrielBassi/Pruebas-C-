@@ -68,6 +68,8 @@
     <Compile Include="DAL\IRepositorioGeneral.cs" />
     <Compile Include="DAL\IRepositorioImagen.cs" />
     <Compile Include="DAL\IUnidadDeTrabajo.cs" />
+    <Compile Include="Excepciones\ExcepcionControlFechas.cs" />
+    <Compile Include="Excepciones\ExisteNombre.cs" />
     <Compile Include="Excepciones\FaltanDatosObligatorios.cs" />
     <Compile Include="Migrations\202008131137053_incio.cs" />
     <Compile Include="Migrations\202008131137053_incio.designer.cs">
@@ -76,6 +78,14 @@
     <Compile Include="Migrations\202008151336199_456.cs" />
     <Compile Include="Migrations\202008151336199_456.designer.cs">
       <DependentUpon>202008151336199_456.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008201914342_fechacambio.cs" />
+    <Compile Include="Migrations\202008201914342_fechacambio.designer.cs">
+      <DependentUpon>202008201914342_fechacambio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009012224141_e.cs" />
+    <Compile Include="Migrations\202009012224141_e.designer.cs">
+      <DependentUpon>202009012224141_e.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Vistas\GestionCampaña.cs">
@@ -99,6 +109,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008151336199_456.resx">
       <DependentUpon>202008151336199_456.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008201914342_fechacambio.resx">
+      <DependentUpon>202008201914342_fechacambio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009012224141_e.resx">
+      <DependentUpon>202009012224141_e.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
