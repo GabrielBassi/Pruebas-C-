@@ -19,8 +19,8 @@ namespace Pruebas.Controladores
         public ControladorImagen(UnidadDeTrabajo pUnidadDeTrabajo, int pAa, int pjj)
         {
             this.iUdT = pUnidadDeTrabajo;
-            aa = pAa;
-            jj = pjj;
+            //aa = pAa;
+            //jj = pjj;
         }
         public IList<Imagen> AgregarImagen(string pNombre, string pRutaImagen, IList<Imagen> pListaImagenes)
         {
@@ -45,57 +45,49 @@ namespace Pruebas.Controladores
             {
                 if (contador == 1)
                 {
-                    CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, aa, jj);
+                    CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, 20, 35);
                 }
                 else
                 {
                     if (contador == 2)
                     {
-                        aa = aa + 190;
-                        CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, aa, jj);
+                        CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, 210, 35);
                     }
                     else
                     {
                         if (contador == 3)
                         {
-                            aa = aa + 190;
-                            CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, aa, jj);
+                            CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, 400, 35);
                         }
                         else
                         {
                             if (contador == 4)
                             {
-                                aa = aa + 190;
-                                CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, aa, jj);
+                                CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, 590, 35);
                             }
                             else
                             {
                                 if (contador == 5)
                                 {
-                                    aa = aa - 570; // imagen5
-                                    jj = jj + 180;
-                                    CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, aa, jj);
+                                   CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, 20, 210);
                                 }
                                 else
                                 {
                                     if (contador == 6)
                                     {
-                                        aa = aa + 190; // imagen6
-                                        CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, aa, jj);
+                                        CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, 210, 210);
                                     }
                                     else
                                     {
                                         if (contador == 7)
                                         {
-                                            aa = aa + 190; // imagen7
-                                            CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, aa, jj);
+                                           CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, 400, 210);
                                         }
                                         else
                                         {
                                             if (contador == 8)
                                             {
-                                                aa = aa + 190; // imagen 8
-                                                CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, aa,jj);
+                                                CargoPictureBox(CargarImagen, listaImagenes, gBoxImagen, 590, 210);
                                             }
                                             else
                                             {
@@ -110,6 +102,7 @@ namespace Pruebas.Controladores
                 }
             }
         }
+
         public void CargoPictureBox(OpenFileDialog CargarImagen, IList<Imagen> pLista, GroupBox gBoxImagen, int aa, int jj)
         {
             PictureBox imagPic = new PictureBox();
@@ -124,7 +117,24 @@ namespace Pruebas.Controladores
             string nombre = Path.GetFileName(imagPic.Tag.ToString());
             AgregarImagen(nombre, RutaImagen, pLista);
         }
-        
+
+
+
+        public void CargoPictureBoxMod(OpenFileDialog CargarImagen, IList<Imagen> pLista, GroupBox gBoxImagen, int aa, int jj)
+        {
+            PictureBox imagPic = new PictureBox();
+            gBoxImagen.Controls.Add(imagPic);
+            imagPic.Size = new Size(150, 150);
+            imagPic.SizeMode = PictureBoxSizeMode.StretchImage;
+            imagPic.Location = new Point(aa, jj);
+            string RutaImagen = CargarImagen.FileName;
+            imagPic.ImageLocation = RutaImagen;
+            imagPic.Image = Image.FromFile(CargarImagen.FileName);
+            imagPic.Tag = CargarImagen.FileName;
+            string nombre = Path.GetFileName(imagPic.Tag.ToString());
+            AgregarImagen(nombre, RutaImagen, pLista);
+        }
+
         public void CargoPictureBoxModificar(IList<Imagen> pLista, GroupBox gBoxImagenMod, int aa, int jj)
         {
             if (pLista.Count <= 4)
@@ -207,7 +217,7 @@ namespace Pruebas.Controladores
             }
         }
 
-        public void CargarImagenesMod(IList<Imagen> listaImagenes, GroupBox gBoxImagenMod)
+        public void CargarImagenesMod(IList<Imagen> listaImagenes, IList<Imagen> pListaImagenMod, GroupBox gBoxImagenMod)
         {
 
             contador = contador + 1;
@@ -218,6 +228,7 @@ namespace Pruebas.Controladores
             if (CargarImagenMod.ShowDialog() == DialogResult.OK)
 
             {
+                CargoPictureBoxModificar(listaImagenes, gBoxImagenMod, aa, jj);
                 if (contador == 1)
                 {
                     CargoPictureBoxModificar(listaImagenes, gBoxImagenMod, aa, jj);
@@ -276,6 +287,145 @@ namespace Pruebas.Controladores
                                             {
                                                 MessageBox.Show("Límite de imágenes alcanzado por campaña", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        public void CargarImagenesMod2(IList<Imagen> listaImagenes, IList<Imagen> pListaImagenMod, GroupBox gBoxImagenMod)
+        {
+
+            contador = contador + 1;
+            //OpenFileDialog CargarImagenMod = new OpenFileDialog();
+            //CargarImagenMod.Filter = "Imágenes(*.jpg, *.gif, *.bmp)|*.jpg;*.gif;*.png";
+            //if (CargarImagenMod.ShowDialog() == DialogResult.OK)
+            //{
+            if (listaImagenes.Count == 1)
+            {
+                CargarImagenesMod222(listaImagenes, gBoxImagenMod);
+                //   CargoPictureBoxModificar(listaImagenes, gBoxImagenMod, aa, jj);
+            }
+            else
+            {
+                if (listaImagenes.Count == 2)
+                {
+                    aa = aa + 190;
+                    CargarImagenesMod222(listaImagenes, gBoxImagenMod);
+                }
+                else
+                {
+                    if (listaImagenes.Count == 3)
+                    {
+                        aa = aa + 190;
+                        CargarImagenesMod222(listaImagenes, gBoxImagenMod);
+                    }
+                    else
+                    {
+                        if (listaImagenes.Count == 4)
+                        {
+                            aa = aa + 190;
+                            CargarImagenesMod222(listaImagenes, gBoxImagenMod);
+                        }
+                        else
+                        {
+                            if (listaImagenes.Count == 5)
+                            {
+                                aa = aa - 570; // imagen5
+                                jj = jj + 180;
+                                CargarImagenesMod222(listaImagenes, gBoxImagenMod);
+                            }
+                            else
+                            {
+                                if (listaImagenes.Count == 6)
+                                {
+                                    aa = aa + 190; // imagen6
+                                    CargarImagenesMod222(listaImagenes, gBoxImagenMod);
+                                }
+                                else
+                                {
+                                    if (listaImagenes.Count == 7)
+                                    {
+                                        aa = aa + 190; // imagen7
+                                        CargarImagenesMod222(listaImagenes, gBoxImagenMod);
+                                    }
+                                    else
+                                    {
+                                        if (listaImagenes.Count == 8)
+                                        {
+                                            aa = aa + 190; // imagen 8
+                                            CargarImagenesMod222(listaImagenes, gBoxImagenMod);
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Límite de imágenes alcanzado por campaña", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                //        }
+            }
+        }
+        public void CargarImagenesMod222(IList<Imagen> listaImagenes, GroupBox gBoxImagen) // es el que anda
+        {
+
+            contador = contador + 1;
+            OpenFileDialog CargarImagen = new OpenFileDialog();
+            CargarImagen.Filter = "Imágenes(*.jpg, *.gif, *.bmp)|*.jpg;*.gif;*.png";
+
+
+            if (CargarImagen.ShowDialog() == DialogResult.OK)
+
+            {
+                if (listaImagenes.Count == 1)
+                {
+                    CargoPictureBoxMod(CargarImagen, listaImagenes, gBoxImagen, 210, 35);
+                }
+                else
+                {
+                    if (listaImagenes.Count == 2)
+                    {
+                        CargoPictureBoxMod(CargarImagen, listaImagenes, gBoxImagen, 400, 35);
+                    }
+                    else
+                    {
+                        if (listaImagenes.Count == 3)
+                        {
+                            CargoPictureBoxMod(CargarImagen, listaImagenes, gBoxImagen, 590, 35);
+                        }
+                        else
+                        {
+                            if (listaImagenes.Count == 4)
+                            {
+                                CargoPictureBoxMod(CargarImagen, listaImagenes, gBoxImagen, 20, 210);
+                            }
+                            else
+                            {
+                                if (listaImagenes.Count == 5)
+                                {
+                                    CargoPictureBoxMod(CargarImagen, listaImagenes, gBoxImagen, 210, 210);
+                                }
+                                else
+                                {
+                                    if (listaImagenes.Count == 6)
+                                    {
+                                        CargoPictureBoxMod(CargarImagen, listaImagenes, gBoxImagen, 400, 210);
+                                    }
+                                    else
+                                    {
+                                        if (listaImagenes.Count == 7)
+                                        {
+                                            CargoPictureBoxMod(CargarImagen, listaImagenes, gBoxImagen, 590, 210);
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Límite de imágenes alcanzado por campaña", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
                                     }
                                 }

@@ -58,7 +58,7 @@ namespace Pruebas.Controladores
         /// <param name="pFechaFin"></param>
         public void ValidarFecha(DateTime pFechaInicio, DateTime pFechaFin)
         {          
-            if (pFechaInicio >= pFechaFin)
+            if (pFechaInicio > pFechaFin)
             {
                throw new ExcepcionControlFechas("La fecha de fin debe ser mayor o igual a la fecha de inicio");
             }
@@ -71,7 +71,7 @@ namespace Pruebas.Controladores
         /// <param name="pHoraFin"></param>
         public void ValidarHora(int pHoraInicio, int pHoraFin)
         {         
-            if (pHoraInicio < pHoraFin)
+            if (pHoraInicio > pHoraFin)
             {
                throw new ExcepcionControlFechas("La hora de fin debe ser mayor la hora de inicio");
             }
@@ -130,8 +130,7 @@ namespace Pruebas.Controladores
             dTPickFechaHastaMod.Value = mCampañaMod.FechaFin;
             nUpDesdeHoraMod.Value = Convert.ToDecimal(mCampañaMod.HoraInicio.Hours);
             nUpHastaHoraMod.Value = Convert.ToDecimal(mCampañaMod.HoraFin.Hours);
-            //Falta cargar el GBox imagenes
-
+            iControladorImagen.CargoPictureBoxModificar(mCampañaMod.ListaImagenes, gBoxCampañaMod, 20, 35);
         } 
         public void EliminarCampaña(Campaña mCampañaMod)
         {

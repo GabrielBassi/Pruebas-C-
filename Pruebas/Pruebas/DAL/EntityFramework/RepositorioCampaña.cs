@@ -20,6 +20,9 @@ namespace Pruebas.DAL.EntityFramework
         {
             return iDbContext.Campañas.Where(x => x.Nombre == pNombre).FirstOrDefault();
         }
+
+
+
     }
 }
 

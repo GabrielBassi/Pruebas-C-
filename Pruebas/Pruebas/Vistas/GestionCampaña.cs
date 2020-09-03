@@ -16,6 +16,7 @@ namespace Pruebas.Vistas
         ControladorImagen iControladorImagen;
         Campaña mCampañaMod, pCampaña;
         IList<Imagen> listaImagenes = new List<Imagen>();
+        IList<Imagen> listaImagenesMod = new List<Imagen>();
         int aa = 20;
         int jj = 35;
 
@@ -46,8 +47,8 @@ namespace Pruebas.Vistas
                 //Métodos de control de los campos fechas, horas y duración.
                 DateTime pFechaInicio = new DateTime(this.dTPickFechaDesde.Value.Year, this.dTPickFechaDesde.Value.Month, this.dTPickFechaDesde.Value.Day, Convert.ToInt32(this.nUpDesdeHoraAgregar.Text), 0, 0);
                 DateTime pFechaFin = new DateTime(this.dTPickFechaHasta.Value.Year, this.dTPickFechaHasta.Value.Month, this.dTPickFechaHasta.Value.Day, Convert.ToInt32(this.nUpHastaHoraAgregar.Text), 0, 0);
-                int pHoraInicio = 0;
-                int pHoraFin = 0;
+                int pHoraInicio = Convert.ToInt32(nUpDesdeHoraAgregar.Value);
+                int pHoraFin = Convert.ToInt32(nUpHastaHoraAgregar.Value); ;
                 iControladorCampaña.ValidarFecha(pFechaInicio, pFechaFin);
                 iControladorCampaña.ValidarHora(pHoraInicio, pHoraFin);
                 
@@ -58,9 +59,7 @@ namespace Pruebas.Vistas
                 iControladorCampaña.AgregarCampaña(txBoxNombreAgregarCamp.Text, pFechaInicio, pFechaFin, pFechaInicio.TimeOfDay, pFechaFin.TimeOfDay, Convert.ToInt32(nUDuracionAgregar.Text), listaImagenes);
                 MessageBox.Show("Registro Correcto", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarPantallaAlta();
-                 aa = 20;
-                 jj = 35;
-
+                //iControladorImagen.RestablecerContador(20,35);
             }
             catch(ExcepcionControlFechas msg)
             {
@@ -117,8 +116,8 @@ namespace Pruebas.Vistas
 
         private void CargarImagMod_Click(object sender, EventArgs e)
         {
-            //iControladorImagen.CargarImagenes(listaImagenes, gBoxImagenes);
-            iControladorImagen.CargarImagenesMod(listaImagenes, gBoxImagenMod);
+           // iControladorImagen.CargarImagenes(listaImagenes, gBoxImagenes);
+            iControladorImagen.CargarImagenesMod2(mCampañaMod.ListaImagenes,listaImagenesMod, gBoxImagenMod);
         }
 
         
@@ -150,6 +149,9 @@ namespace Pruebas.Vistas
             nUpDesdeHoraAgregar.Value = 0;
             nUpHastaHoraAgregar.Value = 0;
             gBoxImagenes.Controls.Clear();
+            listaImagenes.Clear();
+            listaImagenes = new List<Imagen>();
+         //   listaImagenes.Clear();
             //Se limpia el gBox pero no se reinicia el cuadro de las imagenes
         }
         private void LimpiarPantallaMod() 
@@ -176,18 +178,22 @@ namespace Pruebas.Vistas
                 {
                     throw new FaltanDatosObligatorios("Los campos no pueden quedar vacios");
                 }
-                DateTime pFechaInicio = new DateTime(this.dTPickFechaDesde.Value.Year, this.dTPickFechaDesde.Value.Month, this.dTPickFechaDesde.Value.Day, Convert.ToInt32(this.nUpDesdeHoraAgregar.Text), 0, 0);
-                DateTime pFechaFin = new DateTime(this.dTPickFechaHasta.Value.Year, this.dTPickFechaHasta.Value.Month, this.dTPickFechaHasta.Value.Day, Convert.ToInt32(this.nUpHastaHoraAgregar.Text), 0, 0);
-                int pHoraInicio = 0; // ver esto!!!
-                int pHoraFin = 0;
+                DateTime pFechaInicio = new DateTime(this.dTPickFechaDesdeMod.Value.Year, this.dTPickFechaDesdeMod.Value.Month, this.dTPickFechaDesdeMod.Value.Day, Convert.ToInt32(this.nUpDesdeHoraMod.Text), 0, 0);
+                DateTime pFechaFin = new DateTime(this.dTPickFechaHastaMod.Value.Year, this.dTPickFechaHastaMod.Value.Month, this.dTPickFechaHastaMod.Value.Day, Convert.ToInt32(this.nUpHastaHoraMod.Text), 0, 0);
+                int pHoraInicio = Convert.ToInt32(nUpDesdeHoraMod.Value); 
+                int pHoraFin =Convert.ToInt32(nUpHastaHoraMod.Value);
                 iControladorCampaña.ValidarFecha(pFechaInicio, pFechaFin);
                 iControladorCampaña.ValidarHora(pHoraInicio, pHoraFin);
-                if (listaImagenes.Count == 0)
-                {
-                    throw new FaltanDatosObligatorios("Faltar Cargar Imágenes a la Campaña");
-                }
-                
-                iControladorCampaña.ModificarCampaña(pCampaña, txtNomCampañaMod.Text, pFechaInicio, pFechaFin, pFechaInicio.TimeOfDay, pFechaFin.TimeOfDay, Convert.ToInt32(nUDuracionMod.Text), listaImagenes);
+                //if (listaImagenesMod.Count == 0)
+                //{
+                //    throw new FaltanDatosObligatorios("Faltar Cargar Imágenes a la Campaña");
+                //}
+                //if (mCampañaMod.ListaImagenes.Count == 0)
+                //{
+                //    throw new FaltanDatosObligatorios("Faltar Cargar Imágenes a la Campaña");
+                //}
+
+                iControladorCampaña.ModificarCampaña(mCampañaMod, txtNomCampañaMod.Text, pFechaInicio, pFechaFin, pFechaInicio.TimeOfDay, pFechaFin.TimeOfDay, Convert.ToInt32(nUDuracionMod.Text), mCampañaMod.ListaImagenes);
                 
                 MessageBox.Show("Registro Correcto", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarPantallaAlta();
