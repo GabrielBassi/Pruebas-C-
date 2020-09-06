@@ -14,11 +14,13 @@ namespace Pruebas.Vistas
     {
         ControladorCampaña iControladorCampaña;
         ControladorImagen iControladorImagen;
-        Campaña mCampañaMod, pCampaña;
+        Campaña mCampañaMod;
         IList<Imagen> listaImagenes = new List<Imagen>();
         IList<Imagen> listaImagenesMod = new List<Imagen>();
         int aa = 20;
         int jj = 35;
+        int contador = 0;
+        bool control = false;
 
         public GestionCampaña()
         {
@@ -39,10 +41,16 @@ namespace Pruebas.Vistas
                 if (string.IsNullOrWhiteSpace(txBoxNombreAgregarCamp.Text) || (string.IsNullOrWhiteSpace(dTPickFechaDesde.Text))
               || (string.IsNullOrWhiteSpace(dTPickFechaHasta.Text)) || (string.IsNullOrWhiteSpace(nUDuracionAgregar.Text))
               || (string.IsNullOrWhiteSpace(nUpDesdeHoraAgregar.Text)) || (string.IsNullOrWhiteSpace(nUpHastaHoraAgregar.Text)))
-              
 
                 {
                     throw new FaltanDatosObligatorios("Los campos no pueden quedar vacios");
+                }
+                if (txBoxNombreAgregarCamp.Text!="")
+                {
+                    if (iControladorCampaña.ConsultarExistenciaNombreCampaña(txBoxNombreAgregarCamp.Text) ==true)
+                    {
+                        throw new ExisteNombre("Ya existe campaña con ese nombre");
+                    }
                 }
                 //Métodos de control de los campos fechas, horas y duración.
                 DateTime pFechaInicio = new DateTime(this.dTPickFechaDesde.Value.Year, this.dTPickFechaDesde.Value.Month, this.dTPickFechaDesde.Value.Day, Convert.ToInt32(this.nUpDesdeHoraAgregar.Text), 0, 0);
@@ -52,16 +60,22 @@ namespace Pruebas.Vistas
                 iControladorCampaña.ValidarFecha(pFechaInicio, pFechaFin);
                 iControladorCampaña.ValidarHora(pHoraInicio, pHoraFin);
                 
+                
                 if (listaImagenes.Count==0)
                 {
                     throw new FaltanDatosObligatorios("Faltar Cargar Imágenes a la Campaña");
                 }
                 iControladorCampaña.AgregarCampaña(txBoxNombreAgregarCamp.Text, pFechaInicio, pFechaFin, pFechaInicio.TimeOfDay, pFechaFin.TimeOfDay, Convert.ToInt32(nUDuracionAgregar.Text), listaImagenes);
                 MessageBox.Show("Registro Correcto", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                contador = 0; ///
                 LimpiarPantallaAlta();
-                //iControladorImagen.RestablecerContador(20,35);
+
             }
-            catch(ExcepcionControlFechas msg)
+            catch (ExisteNombre msg)
+            {
+                MessageBox.Show(msg.Message, "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (ExcepcionControlFechas msg)
             {
                 MessageBox.Show(msg.Message, "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -79,11 +93,12 @@ namespace Pruebas.Vistas
         {
             try
             {
-                iControladorImagen.CargarImagenes(listaImagenes, gBoxImagenes);
+                iControladorImagen.CargarImagenes(listaImagenes, gBoxImagenes, contador);
+                contador = contador + 1;
             }
-            catch 
+            catch (Exception)
             {
-                
+                MessageBox.Show("Ocurrió un error al cargar la imagen", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
                        
         }
@@ -105,8 +120,6 @@ namespace Pruebas.Vistas
                 gBoxImagenMod.Controls.Clear();
                 mCampañaMod = iControladorCampaña.BuscarCampañaPorNombre(cBoxModCampActivas.Text);
                 iControladorCampaña.CargarCampañaModificar(mCampañaMod, txtNomCampañaMod, nUDuracionMod, dTPickFechaDesdeMod, dTPickFechaHastaMod, nUpDesdeHoraMod, nUpHastaHoraMod, gBoxImagenMod);
-                //iControladorCampaña.ModificarCampaña(mCampañaMod, txtNomCampañaMod.Text, pFechaInicio, pFechaFin, pFechaInicio.TimeOfDay, pFechaFin.TimeOfDay, Convert.ToInt32(nUDuracionMod.Text), listaImagenes);
-
             }
             catch (Exception)
             {
@@ -116,8 +129,7 @@ namespace Pruebas.Vistas
 
         private void CargarImagMod_Click(object sender, EventArgs e)
         {
-           // iControladorImagen.CargarImagenes(listaImagenes, gBoxImagenes);
-            iControladorImagen.CargarImagenesMod2(mCampañaMod.ListaImagenes,listaImagenesMod, gBoxImagenMod);
+          control=  iControladorImagen.CargarImagenesMod(mCampañaMod.ListaImagenes,listaImagenesMod, gBoxImagenMod);
         }
 
         
@@ -151,20 +163,23 @@ namespace Pruebas.Vistas
             gBoxImagenes.Controls.Clear();
             listaImagenes.Clear();
             listaImagenes = new List<Imagen>();
-         //   listaImagenes.Clear();
-            //Se limpia el gBox pero no se reinicia el cuadro de las imagenes
         }
         private void LimpiarPantallaMod() 
         {
+           
             cBoxModCampActivas.Text = "";
+            cBoxModCampActivas.Items.Clear();
+            iControladorCampaña.CargarCampañasActivasComboBox(cBoxModCampActivas);
             txtNomCampañaMod.Text = "";
             nUDuracionMod.Text = "5";
             dTPickFechaDesdeMod.Value = DateTime.Now;
             dTPickFechaHastaMod.Value = DateTime.Now;
             nUpDesdeHoraMod.Value = 0;
             nUpHastaHoraMod.Value = 0;
-            gBoxImagenes.Controls.Clear();
-            //Se limpia el gBox pero no se reinicia el cuadro de las imagenes
+            gBoxImagenMod.Controls.Clear();
+             aa = 20;
+             jj = 35;
+            contador = 0;
         }
 
         private void BtnModificar_Click(object sender, EventArgs e)
@@ -184,19 +199,17 @@ namespace Pruebas.Vistas
                 int pHoraFin =Convert.ToInt32(nUpHastaHoraMod.Value);
                 iControladorCampaña.ValidarFecha(pFechaInicio, pFechaFin);
                 iControladorCampaña.ValidarHora(pHoraInicio, pHoraFin);
-                //if (listaImagenesMod.Count == 0)
-                //{
-                //    throw new FaltanDatosObligatorios("Faltar Cargar Imágenes a la Campaña");
-                //}
-                //if (mCampañaMod.ListaImagenes.Count == 0)
-                //{
-                //    throw new FaltanDatosObligatorios("Faltar Cargar Imágenes a la Campaña");
-                //}
-
-                iControladorCampaña.ModificarCampaña(mCampañaMod, txtNomCampañaMod.Text, pFechaInicio, pFechaFin, pFechaInicio.TimeOfDay, pFechaFin.TimeOfDay, Convert.ToInt32(nUDuracionMod.Text), mCampañaMod.ListaImagenes);
+                if (control==true)
+                {
+                    iControladorCampaña.ModificarCampaña(mCampañaMod, txtNomCampañaMod.Text, pFechaInicio, pFechaFin, pFechaInicio.TimeOfDay, pFechaFin.TimeOfDay, Convert.ToInt32(nUDuracionMod.Text), listaImagenesMod);
+                }
+                else
+                {
+                    iControladorCampaña.ModificarCampaña(mCampañaMod, txtNomCampañaMod.Text, pFechaInicio, pFechaFin, pFechaInicio.TimeOfDay, pFechaFin.TimeOfDay, Convert.ToInt32(nUDuracionMod.Text), iControladorImagen.ListaImagensPorCampañaId(mCampañaMod.CampañaId)); 
+                }
                 
-                MessageBox.Show("Registro Correcto", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarPantallaAlta();
+                MessageBox.Show("La campaña se modifico correctamente", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarPantallaMod();
             }
             catch (ExcepcionControlFechas msg)
             {
@@ -210,9 +223,23 @@ namespace Pruebas.Vistas
 
         private void BtnModEliminar_Click(object sender, EventArgs e)
         {
-            iControladorCampaña.EliminarCampaña(mCampañaMod);
-            cBoxModCampActivas.Items.Clear();
-            iControladorCampaña.CargarCampañasActivasComboBox(cBoxModCampActivas);
+            try
+            {
+                DialogResult result = MessageBox.Show("Desea Eliminar la Campaña", "CONFIRMACIÓN", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (result == DialogResult.Yes)
+                {
+                    iControladorCampaña.EliminarCampaña(mCampañaMod);
+                    MessageBox.Show("Se eliminó correctamente", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cBoxModCampActivas.Items.Clear();
+                    LimpiarPantallaMod();
+                    iControladorCampaña.CargarCampañasActivasComboBox(cBoxModCampActivas);
+                }
+                
+            }
+            catch(Exception msg)
+            {
+                MessageBox.Show(msg.Message, "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

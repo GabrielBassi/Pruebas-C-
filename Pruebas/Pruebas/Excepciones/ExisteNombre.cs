@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 namespace Pruebas.Excepciones
 {
     class ExisteNombre : Exception
-    { 
+    {
+        public ExisteNombre(string message) : base(message)
+        {
+
+        }
 
     }
 }

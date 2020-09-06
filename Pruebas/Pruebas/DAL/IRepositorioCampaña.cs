@@ -10,6 +10,7 @@ namespace Pruebas.DAL
     interface IRepositorioCampaña : IRepositorioGeneral<Campaña>
     {
     Campaña ExistenciaCampaña(string pNombre);
+        bool ExisteCampañaPorNombre(string pNombre);
 
     }
 

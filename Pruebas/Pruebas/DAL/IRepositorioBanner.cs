@@ -7,9 +7,8 @@ using Pruebas.Modelo;
 
 namespace Pruebas.DAL
 {
-    interface IRepositorioImagen : IRepositorioGeneral<Imagen>
+    interface IRepositorioBanner : IRepositorioGeneral<Banner>
     {
-        IList<Imagen> ObtenerTodasLasImagensDeLaCampaña(int pidCampaña);
-    }
 
+    }
 }

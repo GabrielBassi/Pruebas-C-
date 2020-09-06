@@ -613,6 +613,7 @@
             this.cBoxModCampActivas.Name = "cBoxModCampActivas";
             this.cBoxModCampActivas.Size = new System.Drawing.Size(292, 24);
             this.cBoxModCampActivas.TabIndex = 1;
+            this.cBoxModCampActivas.TabStop = false;
             this.cBoxModCampActivas.SelectedIndexChanged += new System.EventHandler(this.CBoxModCampActivas_SelectedIndexChanged);
             // 
             // lblModCampañasAct

@@ -18,3 +18,4 @@ C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.Vist
 C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.Migrations._456.resources
 C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.Migrations.fechacambio.resources
 C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.Migrations.e.resources
+C:\Users\Harry\Desktop\UTN\Pruebas Taller\Pruebas\Pruebas\obj\Debug\Pruebas.Migrations._789.resources

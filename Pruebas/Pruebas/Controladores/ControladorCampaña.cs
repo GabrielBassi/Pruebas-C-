@@ -8,14 +8,13 @@ using Pruebas.Modelo;
 using System.Windows.Forms;
 using Pruebas.Excepciones;
 
+
 namespace Pruebas.Controladores
 {
     class ControladorCampaña
     {
         private readonly UnidadDeTrabajo iUdT;
         private ControladorImagen iControladorImagen;
-        int aamod = 20;
-        int jjmod = 35;
         int aa = 20;
         int jj = 35;
 
@@ -51,6 +50,22 @@ namespace Pruebas.Controladores
             iUdT.Guardar();
         }
 
+        internal bool ConsultarExistenciaNombreCampaña(string pNombreCampaña)
+        {
+            bool existencia = false;
+            existencia = iUdT.RepositorioCampaña.ExisteCampañaPorNombre(pNombreCampaña);
+            if (existencia==true)
+            {
+                return true;
+            }
+            else
+            {
+                return existencia;
+            }
+              
+
+        }
+
         /// <summary>
         /// Método para validar la fecha de inicio y fin de una campaña
         /// </summary>
@@ -71,7 +86,7 @@ namespace Pruebas.Controladores
         /// <param name="pHoraFin"></param>
         public void ValidarHora(int pHoraInicio, int pHoraFin)
         {         
-            if (pHoraInicio > pHoraFin)
+            if (pHoraInicio >= pHoraFin)
             {
                throw new ExcepcionControlFechas("La hora de fin debe ser mayor la hora de inicio");
             }
@@ -119,8 +134,6 @@ namespace Pruebas.Controladores
             Campaña iCampaña = iUdT.RepositorioCampaña.ExistenciaCampaña(pCadena);
             return iCampaña;
         }
-
-        //error al cargar las horas desde y hasta
         public void CargarCampañaModificar(Campaña mCampañaMod, TextBox txtNomCampañaMod, NumericUpDown nUDuracionMod, DateTimePicker dTPickFechaDesdeMod, DateTimePicker dTPickFechaHastaMod, NumericUpDown nUpDesdeHoraMod, NumericUpDown nUpHastaHoraMod, GroupBox gBoxCampañaMod)
         {
 
@@ -130,7 +143,8 @@ namespace Pruebas.Controladores
             dTPickFechaHastaMod.Value = mCampañaMod.FechaFin;
             nUpDesdeHoraMod.Value = Convert.ToDecimal(mCampañaMod.HoraInicio.Hours);
             nUpHastaHoraMod.Value = Convert.ToDecimal(mCampañaMod.HoraFin.Hours);
-            iControladorImagen.CargoPictureBoxModificar(mCampañaMod.ListaImagenes, gBoxCampañaMod, 20, 35);
+           
+            iControladorImagen.CargoPictureBoxModificar(iControladorImagen.ListaImagensPorCampañaId(mCampañaMod.CampañaId), gBoxCampañaMod, 20, 35);
         } 
         public void EliminarCampaña(Campaña mCampañaMod)
         {

@@ -57,16 +57,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controladores\ControladorBanner.cs" />
     <Compile Include="Controladores\ControladorCampaña.cs" />
     <Compile Include="Controladores\ControladorImagen.cs" />
+    <Compile Include="DAL\EntityFramework\RepositorioRssUrl.cs" />
+    <Compile Include="DAL\EntityFramework\RepositorioTextoFijo.cs" />
+    <Compile Include="DAL\IRepositorioFuenteRssUrl.cs" />
     <Compile Include="DAL\EntityFramework\PruebaContext.cs" />
+    <Compile Include="DAL\EntityFramework\RepositorioBanner.cs" />
     <Compile Include="DAL\EntityFramework\RepositorioCampaña.cs" />
+    <Compile Include="DAL\EntityFramework\RepositorioFuenteRss.cs" />
     <Compile Include="DAL\EntityFramework\RepositorioGeneral.cs" />
     <Compile Include="DAL\EntityFramework\RepositorioImagen.cs" />
     <Compile Include="DAL\EntityFramework\UnidadDeTrabajo.cs" />
+    <Compile Include="DAL\IRepositorioBanner.cs" />
     <Compile Include="DAL\IRepositorioCampaña.cs" />
     <Compile Include="DAL\IRepositorioGeneral.cs" />
     <Compile Include="DAL\IRepositorioImagen.cs" />
+    <Compile Include="DAL\IRepositorioRssUrl.cs" />
+    <Compile Include="DAL\IRepositorioTextoFijo.cs" />
     <Compile Include="DAL\IUnidadDeTrabajo.cs" />
     <Compile Include="Excepciones\ExcepcionControlFechas.cs" />
     <Compile Include="Excepciones\ExisteNombre.cs" />
@@ -87,7 +96,15 @@
     <Compile Include="Migrations\202009012224141_e.designer.cs">
       <DependentUpon>202009012224141_e.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009051847512_789.cs" />
+    <Compile Include="Migrations\202009051847512_789.designer.cs">
+      <DependentUpon>202009051847512_789.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Modelo\Banner.cs" />
+    <Compile Include="Modelo\FuenteRss.cs" />
+    <Compile Include="Modelo\RssUrl.cs" />
+    <Compile Include="Modelo\TextoFijo.cs" />
     <Compile Include="Vistas\GestionCampaña.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009012224141_e.resx">
       <DependentUpon>202009012224141_e.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009051847512_789.resx">
+      <DependentUpon>202009051847512_789.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

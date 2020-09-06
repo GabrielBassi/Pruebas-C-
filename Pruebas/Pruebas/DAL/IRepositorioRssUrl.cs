@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pruebas.Modelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +8,7 @@ using Pruebas.Modelo;
 
 namespace Pruebas.DAL
 {
-    interface IRepositorioImagen : IRepositorioGeneral<Imagen>
+    interface IRepositorioRssUrl : IRepositorioGeneral<RssUrl>
     {
-        IList<Imagen> ObtenerTodasLasImagensDeLaCampaña(int pidCampaña);
     }
-
 }

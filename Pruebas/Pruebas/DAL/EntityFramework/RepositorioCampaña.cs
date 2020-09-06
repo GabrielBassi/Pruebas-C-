@@ -13,16 +13,17 @@ namespace Pruebas.DAL.EntityFramework
         public RepositorioCampaña(PruebaContext pContext) : base(pContext)
         {
 
-        }
-
-        
+        }  
         public Campaña ExistenciaCampaña(string pNombre)
         {
             return iDbContext.Campañas.Where(x => x.Nombre == pNombre).FirstOrDefault();
         }
-
-
-
+        public bool ExisteCampañaPorNombre(string pNombre)
+        {
+            bool valor = false;
+            valor = iDbContext.Campañas.Any(x=>x.Nombre==pNombre);
+            return valor;
+        }
     }
 }
 
